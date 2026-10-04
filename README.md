@@ -4,6 +4,7 @@
 
 I design and build backend systems where correctness matters: ledgers and payment flows, high-throughput services, and the platforms they run on. Nine years across fintech, banking, insurance, and e-commerce — from API and data-model design through infrastructure, observability, and production ML.
 
+[![Portfolio](https://img.shields.io/badge/Portfolio-hamman--portfolio.vercel.app-1B1A17?style=flat-square)](https://hamman-portfolio.vercel.app/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-haman--mur-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/haman-mur)
 [![Email](https://img.shields.io/badge/Email-hamanmuraya009%40gmail.com-555555?style=flat-square&logo=gmail&logoColor=white)](mailto:hamanmuraya009@gmail.com)
 [![GitHub](https://img.shields.io/badge/GitHub-MurayaSoftTouch-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/MurayaSoftTouch)
@@ -35,6 +36,8 @@ A double-entry financial ledger and an independent transaction-policy service, b
 - Authenticated service-to-service calls with bounded retries, correlation IDs, and fail-closed approval when the policy service is unavailable.
 - 16 ADRs, a versioned OpenAPI 3.1 contract with consumer and provider contract tests, and 400+ automated tests including Testcontainers and Toxiproxy fault-injection suites.
 
+*Built with two collaborators; I'm the primary owner of the policy service.*
+
 [View repository →](https://github.com/MurayaSoftTouch/LedgerCore)
 
 ### [IncidentIQ](https://github.com/MurayaSoftTouch/IncidentIQ)
@@ -52,13 +55,16 @@ An incident-triage service that classifies incoming reports, says how uncertain 
 
 ### [PulseStream](https://github.com/MurayaSoftTouch/PulseStream) · *in active development*
 
-A Rust event-processing platform focused on durable admission and safe concurrent processing.
+A Rust event-processing service focused on durable admission, safe concurrent processing, and bounded failure handling.
 
 `Rust · Tokio · axum · sqlx · PostgreSQL · GitHub Actions`
 
 - Idempotent ingestion backed by a unique `(source, idempotency_key)` constraint and request fingerprints; conflicting replays are rejected with `409`.
 - Workers claim events with `FOR UPDATE SKIP LOCKED` under time-bound leases, capped by a configurable concurrency limit, so a crashed worker's events become claimable again.
-- 7 ADRs and PostgreSQL integration tests that simulate database outages through a controllable TCP proxy. Retries, dead-lettering, and metrics are next on the public roadmap.
+- Retryable and permanent failures with capped exponential backoff and a durable dead-letter state; processing is explicitly at-least-once.
+- 8 ADRs and PostgreSQL integration tests that simulate database outages through a controllable TCP proxy. Metrics, benchmarks, and authentication are next on the public roadmap.
+
+*Built with two collaborators; I owned the retry and dead-letter milestone.*
 
 [View repository →](https://github.com/MurayaSoftTouch/PulseStream)
 
@@ -68,7 +74,7 @@ A Rust event-processing platform focused on durable admission and safe concurren
 
 | | |
 |---|---|
-| **Languages** | Python · Go · TypeScript / JavaScript · Java · Kotlin · SQL · Elixir |
+| **Languages** | Python · Go · TypeScript / JavaScript · Java · Kotlin · Rust · SQL · Elixir |
 | **Backend & data** | Django · Flask · Node.js · Spring Boot · React · REST · GraphQL · PostgreSQL · Redis · OAuth2 · JWT |
 | **Cloud & platform** | AWS · Azure · Google Cloud · Docker · Kubernetes · Terraform · CloudFormation |
 | **Reliability & delivery** | CI/CD · GitHub Actions · Prometheus · Grafana · ELK |
@@ -98,5 +104,7 @@ Alongside backend work, I build and evaluate AI systems with the same engineerin
 - Production ML services, inference pipelines, and MLOps
 
 ---
+
+More on my work at [hamman-portfolio.vercel.app](https://hamman-portfolio.vercel.app/).
 
 Working on backend platforms, fintech infrastructure, AI systems, or a hard distributed-systems problem? [Let's talk on LinkedIn](https://linkedin.com/in/haman-mur) or [by email](mailto:hamanmuraya009@gmail.com).
